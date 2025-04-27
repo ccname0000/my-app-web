@@ -41,6 +41,18 @@ export default function Nav({ NavItem, MobileNav }) {
             </a>
           ))}
         </div>
+        {/* 導覽列 - 桌面版 */}
+        <div className="hidden md:flex justify-end">
+          {NavItem.map((item, i) => (
+            <a
+              key={i}
+              href="#"
+              className=" px-[3%] py-[1%] rounded-md text-2xl"
+            >
+              {item}
+            </a>
+          ))}
+        </div>
       </div>
     </>
   );
