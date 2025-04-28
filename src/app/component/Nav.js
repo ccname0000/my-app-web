@@ -1,7 +1,11 @@
 "use client";
+import NavItem2 from "./NavThreeItems/NavItem2";
+import NavItem3 from "./NavThreeItems/NavItem3";
+import NavItem4 from "./NavThreeItems/NavItem4";
 import { useState } from "react";
 export default function Nav({ NavItem, MobileNav }) {
   const [isOpen, setIsOpen] = useState(false);
+  let isHover = false; // 這裡的isHover是用來判斷滑鼠是否在導覽列上
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -11,7 +15,7 @@ export default function Nav({ NavItem, MobileNav }) {
     "relative lg:text-5xl text-3xl font-bold top-[40%] left-[20%] hover:text-yellow-700 duration-300 cursor-pointer";
   return (
     <>
-      <div className=" w-full lg:h-[150px] h-[100px] bg-amber-200">
+      <div className=" w-full lg:h-[150px] h-[100px] bg-yellow-300">
         <button className={LogoStyle}>
           <a href="#">Logo</a>
         </button>
@@ -44,14 +48,30 @@ export default function Nav({ NavItem, MobileNav }) {
         {/* 導覽列 - 桌面版 */}
         <div className="hidden md:flex justify-end">
           {NavItem.map((item, i) => (
+            /* 這裡的item是NavItem的每一個元素 */
             <a
               key={i}
               href="#"
-              className=" px-[3%] py-[1%] rounded-md text-2xl"
+              className=" px-[3%] py-[1%] rounded-md text-2xl hover:text-orange-400 duration-300 cursor-pointer"
+              onMouseEnter={() => (isHover = true)}
+              onMouseLeave={() => (isHover = false)}
             >
               {item}
             </a>
           ))}
+          {isHover &&
+            (() => {
+              switch (item) {
+                case "What We Do":
+                  return <NavItem2 />;
+                case "Her Story":
+                  return <NavItem3 />;
+                case "Library":
+                  return <NavItem4 />;
+                default:
+                  return null;
+              }
+            })()}
         </div>
       </div>
     </>
