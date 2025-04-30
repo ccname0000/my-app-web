@@ -3,19 +3,23 @@ import NavItem2 from "./NavThreeItems/NavItem2";
 import NavItem3 from "./NavThreeItems/NavItem3";
 import NavItem4 from "./NavThreeItems/NavItem4";
 import { useState } from "react";
+
 export default function Nav({ NavItem, MobileNav }) {
   const [isOpen, setIsOpen] = useState(false);
-  let isHover = false; // 這裡的isHover是用來判斷滑鼠是否在導覽列上
+  const [hoveredItem, setHoveredItem] = useState(null); // 用來追蹤當前懸停的項目
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
   const NavBarItemStyle =
     "absolute md:hidden top-[100px] right-0 w-[250px] bg-gray-800 text-white shadow-md flex flex-col p-4 space-y-4 transform transition-transform duration-500 ease-in-out";
   const LogoStyle =
     "relative lg:text-5xl text-3xl font-bold top-[40%] left-[20%] hover:text-yellow-700 duration-300 cursor-pointer";
+
   return (
     <>
-      <div className=" w-full lg:h-[150px] h-[100px] bg-yellow-300">
+      <div className="w-full lg:h-[150px] h-[100px] bg-yellow-100">
         <button className={LogoStyle}>
           <a href="#">Logo</a>
         </button>
@@ -46,32 +50,24 @@ export default function Nav({ NavItem, MobileNav }) {
           ))}
         </div>
         {/* 導覽列 - 桌面版 */}
-        <div className="hidden md:flex justify-end">
+        <div className=" hidden md:flex justify-end relative">
           {NavItem.map((item, i) => (
-            /* 這裡的item是NavItem的每一個元素 */
             <a
               key={i}
               href="#"
-              className=" px-[3%] py-[1%] rounded-md text-2xl hover:text-orange-400 duration-300 cursor-pointer"
-              onMouseEnter={() => (isHover = true)}
-              onMouseLeave={() => (isHover = false)}
+              className="px-14 pb-20 text-2xl hover:text-orange-400 duration-300 cursor-pointer"
+              onMouseEnter={() => setHoveredItem(item)} // 設置當前懸停的項目
+              onMouseLeave={() => setHoveredItem(null)} // 清除懸停的項目
             >
               {item}
             </a>
           ))}
-          {isHover &&
-            (() => {
-              switch (item) {
-                case "What We Do":
-                  return <NavItem2 />;
-                case "Her Story":
-                  return <NavItem3 />;
-                case "Library":
-                  return <NavItem4 />;
-                default:
-                  return null;
-              }
-            })()}
+          {/* 根據 hoveredItem 顯示對應的組件 */}
+          {hoveredItem === "What We Do" && (
+            <NavItem2 setHoveredItem={setHoveredItem} />
+          )}
+          {hoveredItem === "Her Story" && <NavItem3 />}
+          {hoveredItem === "Library" && <NavItem4 />}
         </div>
       </div>
     </>
