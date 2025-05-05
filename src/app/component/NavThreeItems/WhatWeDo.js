@@ -18,6 +18,16 @@ export default function NavItem2({ setHoveredItem, hoveredItem }) {
     transition-opacity duration-500 ease-in-out 
     ${isVisible ? "opacity-100" : "opacity-0 pointer-events-none"}
   `;
+  const locations = [
+    {
+      name: "Anti Gender - Based Violence and Discrimination",
+      top: "45%",
+      left: "10%",
+    },
+    { name: "Women and the Economy", top: "65%", left: "10%" },
+    { name: "Women and the Economy", top: "45%", left: "50%" },
+    { name: "Women's Leadership", top: "65%", left: "50%" },
+  ];
 
   return (
     <div
@@ -25,21 +35,17 @@ export default function NavItem2({ setHoveredItem, hoveredItem }) {
       onMouseEnter={() => setHoveredItem("What We Do")} // 保持開啟
       onMouseLeave={() => setHoveredItem(null)} // 滑出後隱藏
     >
-      <div className="absolute text-3xl text-orange-400 font-bold top-[25%] left-[10%]">
+      <div className="absolute text-2xl text-orange-400 font-bold top-[25%] left-[10%]">
         What We Do
       </div>
-      <div className="absolute text-xl  top-[45%] left-[10%]">
-        Anti Gender - Based Violence and Discrimination
-      </div>
-      <div className="absolute text-xl  top-[65%] left-[10%]">
-        Women and the Economy
-      </div>
-      <div className="absolute text-xl  top-[45%] left-[50%]">
-        East Asia Gender Equality Forum
-      </div>
-      <div className="absolute text-xl  top-[65%] left-[50%]">
-        Women’s Leadership
-      </div>
+      {locations.map((location, index) => (
+        <div
+          key={index}
+          className={`absolute text-xl left-[${location.left}] top-[${location.top}]`}
+        >
+          {location.name}
+        </div>
+      ))}
     </div>
   );
 }

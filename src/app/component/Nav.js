@@ -13,7 +13,7 @@ export default function Nav({ NavItem, MobileNav }) {
   };
 
   const NavBarItemStyle =
-    "absolute md:hidden top-[100px] right-0 w-[250px] bg-gray-800 text-white shadow-md flex flex-col p-4 space-y-4 transform transition-transform duration-500 ease-in-out";
+    "absolute md:hidden top-[100px] right-0 w-[250px] bg-gray-800 text-white flex flex-col p-4 space-y-4 transform transition-transform duration-500 ease-in-out";
   const LogoStyle =
     "absolute lg:text-5xl text-3xl font-bold top-[5%] left-[20%] hover:text-yellow-700 duration-300 cursor-pointer";
 

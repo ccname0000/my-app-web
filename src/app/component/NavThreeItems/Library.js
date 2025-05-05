@@ -14,16 +14,31 @@ export default function NavItem4({ setHoveredItem, hoveredItem }) {
   }, [hoveredItem]);
 
   const NavItem3Style = `
-    relative top-[40px] w-full h-[400px] bg-gray-200 
+    relative top-[40px] w-full h-[300px] bg-gray-200 
     transition-opacity duration-500 ease-in-out 
     ${isVisible ? "opacity-100" : "opacity-0 pointer-events-none"}
   `;
-
+  const locations = [
+    { name: "Publications", top: "60%", left: "10%" },
+    { name: "Multimedia", top: "60%", left: "50%" },
+  ];
   return (
     <div
       className={NavItem3Style}
       onMouseEnter={() => setHoveredItem("Library")} // 保持開啟
       onMouseLeave={() => setHoveredItem(null)} // 滑出後隱藏
-    ></div>
+    >
+      <div className="absolute text-2xl text-orange-400 font-bold top-[25%] left-[10%]">
+        What We Do
+      </div>
+      {locations.map((location, index) => (
+        <div
+          key={index}
+          className={`absolute text-xl left-[${location.left}] top-[${location.top}]`}
+        >
+          {location.name}
+        </div>
+      ))}
+    </div>
   );
 }
