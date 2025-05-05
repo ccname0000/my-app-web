@@ -1,7 +1,7 @@
 "use client";
-import NavItem2 from "./NavThreeItems/NavItem2";
-import NavItem3 from "./NavThreeItems/NavItem3";
-import NavItem4 from "./NavThreeItems/NavItem4";
+import NavItem2 from "./NavThreeItems/WhatWeDo";
+import NavItem3 from "./NavThreeItems/HerStory";
+import NavItem4 from "./NavThreeItems/Library";
 import { useState } from "react";
 
 export default function Nav({ NavItem, MobileNav }) {
@@ -52,7 +52,7 @@ export default function Nav({ NavItem, MobileNav }) {
             <a
               key={i}
               href="#"
-              className="text-2xl pb-20 hover:text-orange-400 duration-300 cursor-pointer"
+              className="text-2xl font-bold pb-20 hover:text-orange-400 duration-300 cursor-pointer"
               onMouseEnter={() => setHoveredItem(item)} // 設置當前懸停的項目
               onMouseLeave={() => setHoveredItem(null)} // 清除懸停的項目
             >
@@ -67,8 +67,12 @@ export default function Nav({ NavItem, MobileNav }) {
         {hoveredItem === "What We Do" && (
           <NavItem2 setHoveredItem={setHoveredItem} hoveredItem={hoveredItem} />
         )}
-        {hoveredItem === "Her Story" && <NavItem3 />}
-        {hoveredItem === "Library" && <NavItem4 />}
+        {hoveredItem === "Her Story" && (
+          <NavItem3 setHoveredItem={setHoveredItem} hoveredItem={hoveredItem} />
+        )}
+        {hoveredItem === "Library" && (
+          <NavItem4 setHoveredItem={setHoveredItem} hoveredItem={hoveredItem} />
+        )}
       </div>
     </>
   );
