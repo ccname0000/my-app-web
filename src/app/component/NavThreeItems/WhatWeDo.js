@@ -41,7 +41,8 @@ export default function NavItem2({ setHoveredItem, hoveredItem }) {
       {locations.map((location, index) => (
         <div
           key={index}
-          className={`absolute text-xl left-[${location.left}] top-[${location.top}]`}
+          className={`absolute text-xl`}
+          style={{ left: location.left, top: location.top }}
         >
           {location.name}
         </div>
