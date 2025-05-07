@@ -21,7 +21,7 @@ export default function SideBar({ isOpen }) {
 
   return (
     <div
-      className={`md:hidden absolute top-[13%] right-[6%] h-[90%] w-64 bg-gray-400 p-4 transition-all duration-500 ${
+      className={`md:hidden absolute top-[13%] right-[6%] h-[130%] w-64 bg-gray-400 p-4 transition-all duration-500 ${
         isOpen ? "opacity-100 scale-100" : "opacity-0 scale-90"
       }`}
     >
