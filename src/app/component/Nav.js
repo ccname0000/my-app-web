@@ -1,10 +1,11 @@
 "use client";
-import NavItem2 from "./NavThreeItems/WhatWeDo";
-import NavItem3 from "./NavThreeItems/HerStory";
-import NavItem4 from "./NavThreeItems/Library";
+import NavItem2 from "./NavFourItems/WhatWeDo";
+import NavItem3 from "./NavFourItems/HerStory";
+import NavItem4 from "./NavFourItems/Library";
+import SideBar from "./NavFourItems/SideBar";
 import { useState } from "react";
 
-export default function Nav({ NavItem, MobileNav }) {
+export default function Nav({ NavItem }) {
   const [isOpen, setIsOpen] = useState(false);
   const [hoveredItem, setHoveredItem] = useState(null); // 用來追蹤當前懸停的項目
 
@@ -19,7 +20,7 @@ export default function Nav({ NavItem, MobileNav }) {
 
   return (
     <>
-      <div className="w-full lg:h-[150px] h-[100px]">
+      <div className={`w-full lg:h-[150px] h-[100px]`}>
         {/* 漢堡按鈕 - 手機版 */}
         <div className="absolute right-[6%] top-[7%] md:hidden">
           <button
@@ -31,21 +32,8 @@ export default function Nav({ NavItem, MobileNav }) {
           </button>
         </div>
         {/* 側邊選單 - 手機版動畫效果 */}
-        <div
-          className={`${NavBarItemStyle} ${
-            isOpen ? "translate-x-0" : "translate-x-full"
-          }`}
-        >
-          {MobileNav.map((item, i) => (
-            <a
-              key={i}
-              href="#"
-              className="hover:bg-gray-600 p-2 rounded-md text-lg"
-            >
-              {item}
-            </a>
-          ))}
-        </div>
+
+        <SideBar isOpen={isOpen} />
         {/* 導覽列 - 桌面版 */}
         <div className="hidden md:flex justify-end relative space-x-30 right-[4%] top-[35%]">
           {NavItem.map((item, i) => (
